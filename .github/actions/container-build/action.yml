@@ -44,6 +44,14 @@ runs:
         exit-code: '1'
         severity: 'CRITICAL,HIGH'
   
+    - name: Run dockle
+    uses: goodwithtech/dockle-action@main
+    with:
+      image: ${{ steps.meta.outputs.tags }}
+      format: 'list'
+      failure-threshold: 'fatal'
+      exit-code: '1'
+
     - name: ECRにイメージをプッシュ
       if: success()
       run: |
