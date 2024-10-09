@@ -55,17 +55,17 @@ runs:
                 AWS/ecs/appspec.json
         cat AWS/ecs/appspec.json
       env:
-        AWS_ID: ${{ inputs.aws-id }}###### アカウントID ######
-        TASK_DEFINITION: ${{ inputs.task-definition }}####### タスク定義 ######
-        CONTAINER_NAME: ${{ inputs.container-name }}###### コンテナ名 ######
+        AWS_ID: ${{ inputs.aws-id }}
+        TASK_DEFINITION: ${{ inputs.task-definition }}
+        CONTAINER_NAME: ${{ inputs.container-name }}
       shell: bash
 
     - name: ECSサービスの更新
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        cluster: ${{ inputs.ecs-cluster }}###### ECSクラスター ######
-        service: ${{ inputs.ecs-service }}###### ECSサービス ######
-        task-definition: ${{ inputs.task-definition }}###### タスク定義 ######
+        cluster: ${{ inputs.ecs-cluster }}
+        service: ${{ inputs.ecs-service }}
+        task-definition: ${{ inputs.task-definition }}
         codedeploy-appspec: AWS/ecs/appspec.json
-        codedeploy-application: ${{ inputs.codedeploy-application }}###### CodeDeployアプリケーション ######
-        codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}###### CodeDeployデプロイグループ ######
+        codedeploy-application: ${{ inputs.codedeploy-application }}
+        codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}
