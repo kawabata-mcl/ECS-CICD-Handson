@@ -65,7 +65,7 @@ runs:
       with:
         cluster: ${{ inputs.ecs-cluster }}
         service: ${{ inputs.ecs-service }}
-        task-definition: ${{ inputs.task-definition }}
+        task-definition: ${{ steps.render.outputs.task-definition }}
         codedeploy-appspec: AWS/ecs/appspec.json
         codedeploy-application: ${{ inputs.codedeploy-application }}
         codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}
