@@ -49,7 +49,6 @@ runs:
       with:
         image: ${{ steps.meta.outputs.tags }}
         format: 'list'
-        failure-threshold: 'fatal'
         exit-code: '1'
 
     - name: ECRにイメージをプッシュ
