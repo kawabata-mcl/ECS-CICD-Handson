@@ -30,7 +30,7 @@ runs:
 
     - name: イメージのビルド
       run: |
-        docker build -f docker/ecs/Dockerfile -t ${{ steps.meta.outputs.tags }} .
+        docker build -f ${{ inputs.dockerfile-path }} -t ${{ steps.meta.outputs.tags }} .
         ###### dockerコマンドを使用してビルドしてください             ######
         ###### Dockerfileは`docker/ecs/Dockerfile`を使ってください  ######
         ###### タグには${{ steps.meta.outputs.tags }}が使えます     ######
@@ -39,6 +39,6 @@ runs:
     - name: ECRにイメージをプッシュ
       if: success()
       run: |
-        docker image push ${{ steps.meta.outputs.tags }} ${{ inputs.ecr-repository-uri }}
+        docker push ${{ steps.meta.outputs.tags }}
         ###### dockerコマンドを使用してECRにプッシュしてください。 ######
       shell: bash
