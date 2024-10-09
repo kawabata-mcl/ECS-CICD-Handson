@@ -56,7 +56,7 @@ runs:
         cat AWS/ecs/appspec.yml
       env:
         AWS_ID: ${{ inputs.aws-id }}
-        TASK_DEFINITION: ${{ steps.render.outputs.task-definition }}
+        TASK_DEFINITION: ${{ inputs.task-definition }}
         CONTAINER_NAME: ${{ inputs.container-name }}
       shell: bash
 
