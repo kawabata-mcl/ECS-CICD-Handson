@@ -63,8 +63,8 @@ runs:
     - name: ECSサービスの更新
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        cluster: ${{ inputs.ecs-cluster }}
-        service: ${{ inputs.ecs-service }}
+        ecs-cluster: ${{ inputs.ecs-cluster }}
+        ecs-service: ${{ inputs.ecs-service }}
         task-definition: ${{ steps.render.outputs.task-definition }}
         codedeploy-appspec: AWS/ecs/appspec.yml
         codedeploy-application: ${{ inputs.codedeploy-application }}
