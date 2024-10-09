@@ -47,25 +47,25 @@ runs:
         container-name: ${{ inputs.container-name }}
         image: ${{ inputs.container-image }}
 
-    - name: appspec.ymlの修正
-      run: | 
+    - name: appspec.jsonの修正
+      run: |
         sed -i  -e "s/PLACEHOLDER_AWS_ID/${AWS_ID}/g" \
                 -e "s/PLACEHOLDER_TASK_DEFINITION/${TASK_DEFINITION}/g" \
                 -e "s/PLACEHOLDER_CONTAINER_NAME/${CONTAINER_NAME}/g" \
-                aws/ecs/appspec.yml
-        cat aws/ecs/appspec.yml
-      env:            
-        AWS_ID: ${{ inputs.aws-id }}###### アカウントID ######
-        TASK_DEFINITION: ${{ inputs.task-definition }}####### タスク定義 ######
-        CONTAINER_NAME: ${{ inputs.container-name }}###### コンテナ名 ######
+                aws/ecs/appspec.json
+        cat aws/ecs/appspec.json
+      env:
+        AWS_ID: ###### アカウントID ######
+        TASK_DEFINITION: ####### タスク定義 ######
+        CONTAINER_NAME: ###### コンテナ名 ######
       shell: bash
 
     - name: ECSサービスの更新
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1 
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        cluster: ${{ inputs.ecs-cluster }}###### ECSクラスター ######
-        service: ${{ inputs.ecs-service }}###### ECSサービス ######
-        task-definition: ${{ inputs.task-definition }}###### タスク定義 ######
+        cluster: ###### ECSクラスター ######
+        service: ###### ECSサービス ######
+        task-definition: ###### タスク定義 ######
         codedeploy-appspec: aws/ecs/appspec.yml
-        codedeploy-application: ${{ inputs.codedeploy-application }}###### CodeDeployアプリケーション ######
-        codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}###### CodeDeployデプロイグループ ######
+        codedeploy-application: ###### CodeDeployアプリケーション ######
+        codedeploy-deployment-group: ###### CodeDeployデプロイグループ ######
