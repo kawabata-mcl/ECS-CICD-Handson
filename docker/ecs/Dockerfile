@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
     ca-certificates \
-    lsb-release
+    lsb-release \
     | rm -rf /var/lib/apt/lists
 
 # Nginxの公式リポジトリを追加
@@ -20,7 +20,7 @@ RUN curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
     | tee /etc/apt/sources.list.d/nginx.list
 
 # Nginxをインストール
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx \
     | rm -rf /var/lib/apt/lists
 
 # indexファイルの作成
