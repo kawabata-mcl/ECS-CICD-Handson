@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     ca-certificates \
     lsb-release
+    | rm -rf /var/lib/apt/lists
 
 # Nginxの公式リポジトリを追加
 RUN curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
@@ -20,6 +21,7 @@ RUN curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
 
 # Nginxをインストール
 RUN apt-get update && apt-get install -y nginx
+    | rm -rf /var/lib/apt/lists
 
 # indexファイルの作成
 RUN echo 'Dockle Success' > /usr/share/nginx/html/index.html
