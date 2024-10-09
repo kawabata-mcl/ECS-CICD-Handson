@@ -49,9 +49,9 @@ runs:
 
     - name: appspec.jsonの修正
       run: |
-        sed -i  -e "s/PLACEHOLDER_AWS_ID/${AWS_ID}/g" \
-                -e "s/PLACEHOLDER_TASK_DEFINITION/${TASK_DEFINITION}/g" \
-                -e "s/PLACEHOLDER_CONTAINER_NAME/${CONTAINER_NAME}/g" \
+        sed -i  -e "s|PLACEHOLDER_AWS_ID|${AWS_ID}|g" \
+                -e "s|PLACEHOLDER_TASK_DEFINITION|${TASK_DEFINITION}|g" \
+                -e "s|PLACEHOLDER_CONTAINER_NAME|${CONTAINER_NAME}|g" \
                 AWS/ecs/appspec.json
         cat AWS/ecs/appspec.json
       env:
