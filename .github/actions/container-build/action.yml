@@ -30,7 +30,7 @@ runs:
 
     - name: イメージのビルド
       run: |
-        docker build -f docker/ecs/Dockerfile -t ${{ steps.meta.outputs.tags }}
+        docker build -f docker/ecs/Dockerfile -t ${{ steps.meta.outputs.tags }} .
         ###### dockerコマンドを使用してビルドしてください             ######
         ###### Dockerfileは`docker/ecs/Dockerfile`を使ってください  ######
         ###### タグには${{ steps.meta.outputs.tags }}が使えます     ######
