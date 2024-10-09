@@ -1,6 +1,6 @@
 name: 3 ECS タスクデプロイ
 
-on: 
+on:
   push:
     branched:
       - main
@@ -29,7 +29,7 @@ jobs:
         id: build
         with:
           ecr-repository-uri: ${{ secrets.ECR_REPOSITORY_URL }}
-          dockerfile-path: docker/ecs/
+          dockerfile-path: docker/ecs/Dockerfile
 
       - uses: ./.github/actions/container-deploy/      # コンテナのデプロイ
         with:
