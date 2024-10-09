@@ -47,16 +47,16 @@ runs:
         container-name: ${{ inputs.container-name }}
         image: ${{ inputs.container-image }}
 
-    - name: appspec.jsonの修正
+    - name: appspec.ymlの修正
       run: |
-        sed -i  -e "s|PLACEHOLDER_AWS_ID|${AWS_ID}|g" \
-                -e "s|PLACEHOLDER_TASK_DEFINITION|${TASK_DEFINITION}|g" \
-                -e "s|PLACEHOLDER_CONTAINER_NAME|${CONTAINER_NAME}|g" \
-                AWS/ecs/appspec.json
-        cat AWS/ecs/appspec.json
+        sed -i  -e "s/PLACEHOLDER_AWS_ID/${AWS_ID}/g" \
+                -e "s/PLACEHOLDER_TASK_DEFINITION/${TASK_DEFINITION}/g" \
+                -e "s/PLACEHOLDER_CONTAINER_NAME/${CONTAINER_NAME}/g" \
+                aws/ecs/appspec.yml
+        cat aws/ecs/appspec.yml
       env:
         AWS_ID: ${{ inputs.aws-id }}
-        TASK_DEFINITION: ${{ steps.render.outputs.task-definition }}
+        TASK_DEFINITION: ${{ inputs.task-definition }}
         CONTAINER_NAME: ${{ inputs.container-name }}
       shell: bash
 
@@ -65,7 +65,7 @@ runs:
       with:
         cluster: ${{ inputs.ecs-cluster }}
         service: ${{ inputs.ecs-service }}
-        task-definition: ${{ steps.render.outputs.task-definition }}
-        codedeploy-appspec: AWS/ecs/appspec.json
+        task-definition: ${{ inputs.task-definition }}
+        codedeploy-appspec: AWS/ecs/appspec.yml
         codedeploy-application: ${{ inputs.codedeploy-application }}
         codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}
