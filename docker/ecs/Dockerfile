@@ -22,7 +22,7 @@ RUN curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
 RUN apt-get update && apt-get install -y nginx
 
 # indexファイルの作成
-RUN echo 'Trivy Success' > /usr/share/nginx/html/index.html
+RUN echo 'Dockle Success' > /usr/share/nginx/html/index.html
 
 # 80番ポートを開放
 EXPOSE 80
