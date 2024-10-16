@@ -44,6 +44,13 @@ runs:
         exit-code: '1'
         severity: 'CRITICAL,HIGH'
 
+    - name: Check Docker best practices with Dockle
+      uses: erzz/dockle-action@v1
+      with:
+        image: ${{ steps.meta.outputs.tags }}
+        failure-threshold: fatal
+        exit-code: 1
+  
     - name: ECRにイメージをプッシュ
       if: success()
       run: |
