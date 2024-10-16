@@ -36,6 +36,14 @@ runs:
         ###### タグには${{ steps.meta.outputs.tags }}が使えます           ######
       shell: bash
 
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        image-ref: ${{ steps.meta.outputs.tags }}
+        format: 'table'
+        exit-code: '1'
+        severity: 'CRITICAL,HIGH'
+
     - name: ECRにイメージをプッシュ
       if: success()
       run: |
